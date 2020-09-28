@@ -9,7 +9,7 @@ export class TopRatedMoviesService {
 
   private BASE_URL: string;
   private API_KEY: string;
-  private TOP_RETED_MOVIES = '/movie/top_rated?api_key=';
+  private TOP_RETED_MOVIES = 'movie/top_rated?api_key=';
   public LANG = 'en-US';
   public PAGE = 1;
   constructor(private http: HttpClient) {

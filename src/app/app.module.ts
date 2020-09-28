@@ -10,12 +10,14 @@ import { CarouselMoviesComponent } from './components/carousel-movies/carousel-m
 import { CarouselSeriesComponent } from './components/carousel-series/carousel-series.component';
 // Pluggins
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { TopRatedMoviesComponent } from './components/top-rated-movies/top-rated-movies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarouselMoviesComponent,
-    CarouselSeriesComponent
+    CarouselSeriesComponent,
+    TopRatedMoviesComponent
   ],
   imports: [
     BrowserModule,

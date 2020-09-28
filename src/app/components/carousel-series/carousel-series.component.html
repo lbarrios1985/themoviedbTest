@@ -14,7 +14,7 @@
       <owl-carousel-o [options]="customOptions" #owlCar>
         <ng-container *ngFor="let serie of popularSeries">
           <ng-template carouselSlide>
-              <img [src]="serie.poster_path">
+              <img [src]="serie.backdrop_path">
           </ng-template>
         </ng-container>
       </owl-carousel-o>

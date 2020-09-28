@@ -1,0 +1,8 @@
+<h1>Top Rated Movies</h1>
+<div class="container container-topRated">
+  <div class="row row-topRated">
+    <div class="col-12 col-sm-6 col-md-3" *ngFor="let movie of topRatedMovies">
+      <img class="w-100" [src]="movie.poster_path">
+    </div>
+  </div>
+</div>
