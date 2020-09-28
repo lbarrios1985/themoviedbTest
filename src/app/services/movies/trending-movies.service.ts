@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 export class TrendingMoviesService {
   private BASE_URL: string;
   private API_KEY: string;
-  private TRENDING_MOVIES = 'trending/movies/day?api_key=';
+  private TRENDING_MOVIES = 'trending/movie/day?api_key=';
   constructor(private http: HttpClient) {
     this.BASE_URL = environment.API_MOVIE_DB;
     this.API_KEY = environment.API_KEY;
