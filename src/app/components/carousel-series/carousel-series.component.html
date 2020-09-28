@@ -1,1 +1,31 @@
-<p>carousel-series works!</p>
+<h1>Popular Series</h1>
+<div class="container container-series">
+  <div class="row row-owlcar">
+    <!-- Left
+          <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
+    -->
+    <div class="col-sm-1 btn-owlcar">
+      <a (click)="owlCar.prev()">
+        minus
+      </a>
+    </div>
+    <!-- carousel -->
+    <div class="col-sm-10">
+      <owl-carousel-o [options]="customOptions" #owlCar>
+        <ng-container *ngFor="let serie of popularSeries">
+          <ng-template carouselSlide>
+              <img [src]="serie.poster_path">
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    <!-- Right
+          <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+    -->
+    <div class="col-sm-1 btn-owlcar">
+      <a (click)="owlCar.next()">
+      mas
+      </a>
+    </div>
+  </div>
+</div>

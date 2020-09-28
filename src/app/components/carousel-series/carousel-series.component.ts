@@ -5,6 +5,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { PopularSeriesService } from '../../services/series/popular-series.service';
 // Interfaces
 import { GetData } from '../../interfaces/get-data';
+import { Serie } from '../../interfaces/serie';
+// Environment
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-carousel-series',
@@ -12,6 +15,9 @@ import { GetData } from '../../interfaces/get-data';
   styleUrls: ['./carousel-series.component.scss']
 })
 export class CarouselSeriesComponent implements OnInit {
+  popularSeries: Serie[] = [];
+  API_BASE_IMAGE: string;
+  imageSize: string;
 
   customOptions: OwlOptions = {
     autoplay : true,
@@ -43,13 +49,20 @@ export class CarouselSeriesComponent implements OnInit {
 
   constructor(
     protected psSeries: PopularSeriesService
-    ) { }
+    ) {
+      this.API_BASE_IMAGE = environment.API_BASE_IMAGE;
+    }
 
   ngOnInit(): void {
     this.psSeries.getPopularSeries()
     .subscribe(
       (data: GetData) => {
-        console.log(data);
+        this.imageSize = 'w500';
+        for (let i = 0; i < 10; i++) {
+          data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
+          data.results[i].backdrop_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].backdrop_path;
+          this.popularSeries.push(data.results[i]);
+        }
       },
       (error: any) => {
         console.error(error);

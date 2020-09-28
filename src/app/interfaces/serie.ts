@@ -4,10 +4,10 @@ export interface Serie {
   id: string|number; // integer
   backdrop_path: string|null;
   vote_average: number;
+  overview: string;
   first_air_date: string;
   origin_country: string[];
   genre_ids: number[];
-  overview: string;
   original_language: string;
   vote_count: string|number; // integer
   name: string;
