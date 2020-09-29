@@ -3,9 +3,13 @@
   <div class="row row-detail-movie">
     <div class="col-12 col-sm-6 col-md-5">
       <img class="" [src]="detailMovie.poster_path">
+      <div *ngFor="let genre of listGenres">
+        <div class="badge badge-pill badge-light">{{genre.name}}</div>
+      </div>
     </div>
     <div class="col-12 col-sm-6 col-md-7">
       <p>{{detailMovie.overview}}</p>
+      <button type="button" class="btn btn-danger" (click)="goHome()">Return</button>
     </div>
   </div>
 </div>
