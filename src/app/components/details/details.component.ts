@@ -22,6 +22,7 @@ export class DetailsComponent implements OnInit {
     } else if (localStorage.getItem('detail')){
       this.detailMovie = JSON.parse(localStorage.getItem('detail'));
     } else {
+      this.goHome();
       this.detailMovie = {
         poster_path: null,
         adult: false,
@@ -42,6 +43,10 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  goHome() {
+    this.router.navigate(['']);
+    localStorage.removeItem('detail');
   }
 
 }
