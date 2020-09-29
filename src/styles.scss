@@ -101,7 +101,8 @@ body {
     background-color: orange;
     position: fixed;
     right: 1rem;
-    top: 3rem;
+    top: 1rem;
+    z-index: 99;
 
     i {
       color: white;
