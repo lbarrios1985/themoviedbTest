@@ -1,9 +1,9 @@
-<h1>Top Rated Movies</h1>
-<div class="container container-topRated">
+<h1 class="text-center">Top Rated Movies</h1>
+<div class="container-fluid container-topRated">
   <div class="row row-topRated">
-    <div class="col-12 col-sm-6 col-md-3" *ngFor="let movie of topRatedMovies">
+    <div class="col-12 col-sm-6 col-md-3 col-topRated" *ngFor="let movie of topRatedMovies">
       <div (click)="redirect(movie)">
-        <img class="w-100" [src]="movie.poster_path">
+        <img [src]="movie.poster_path">
       </div>
     </div>
   </div>

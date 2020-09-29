@@ -1,0 +1,38 @@
+.container-topRated {
+  margin: 2rem 0 3rem 0;
+  // border: 1px solid red;
+  .row-topRated {
+    // border: 1px solid red;
+
+    padding: 0rem 4vw;
+
+    .col-topRated {
+      transition: 1s all;
+      img {
+        border-radius: 20px;
+        width: 100%;
+        display: block;
+        margin: auto;
+      }
+      &:hover {
+        transform: scale(1.2);
+        z-index: 2;
+        cursor: pointer;
+      }
+      @media (max-width: 767px) {
+        margin-bottom: 1rem;
+        img {
+          // max-height: 300px;
+          max-width: 280px;
+          max-width: 80%;
+          object-fit: contain;
+          object-position: center;
+        }
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+  }
+}
