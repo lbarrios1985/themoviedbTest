@@ -60,7 +60,7 @@ export class DetailsComponent implements OnInit {
       genre_ids.forEach((id: number) => {
         this.listGenres.push(genres.find((m: { id: number; }) => m.id === id))
       });
-      console.log(this.listGenres);
+      // console.log(this.listGenres);
     }
   }
   clearAll(): void{
@@ -81,5 +81,14 @@ export class DetailsComponent implements OnInit {
       vote_average: 0
     };
     this.listGenres = [];
+  }
+  addFavorite(): void{
+    // let fav = [];
+    // if (localStorage.getItem('fav')){
+    //   console.log(JSON.parse(localStorage.getItem('fav')))
+    // } else {
+    //   let obj = Object.assign([], this.detailMovie);
+    //   localStorage.setItem('fav', JSON.stringify(obj));
+    // }
   }
 }
