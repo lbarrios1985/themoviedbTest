@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+// Services
+import { GenresService } from '../../services/genres.service';
 // Interfaces
+import { GetData } from '../../interfaces/get-data';
 import { Movie } from '../../interfaces/movie';
+import { Genre } from '../../interfaces/genre';
 
 @Component({
   selector: 'app-details',
@@ -11,10 +15,12 @@ import { Movie } from '../../interfaces/movie';
 })
 export class DetailsComponent implements OnInit {
   detailMovie:Movie;
+  listGenres: Genre[]=[];
 
   constructor(
     private acRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    protected gsGenre: GenresService,
   ) {
     if (this.router.getCurrentNavigation().extras.state) {
       this.detailMovie = this.router.getCurrentNavigation().extras.state.movie;
@@ -23,30 +29,57 @@ export class DetailsComponent implements OnInit {
       this.detailMovie = JSON.parse(localStorage.getItem('detail'));
     } else {
       this.goHome();
-      this.detailMovie = {
-        poster_path: null,
-        adult: false,
-        overview: "",
-        release_date: "",
-        genre_ids: [],
-        id: "",
-        original_title: "",
-        original_language: "",
-        title: "",
-        backdrop_path: null,
-        popularity: 0,
-        vote_count: 0,
-        video: false,
-        vote_average: 0
-      }
+      this.clearAll();
     }
   }
 
   ngOnInit(): void {
+    this.getGenres();
   }
   goHome() {
     this.router.navigate(['']);
     localStorage.removeItem('detail');
   }
-
+  // Get Genders movies
+  getGenres(){
+    this.gsGenre.getGenres()
+    .subscribe(
+      (data: GetData) => {
+        this.findGenres(data.genres);
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+  // Find genders
+  findGenres(genres: any[]){
+    if (localStorage.getItem('detail')){
+      let movie = JSON.parse(localStorage.getItem('detail'));
+      let genre_ids = movie.genre_ids;
+      genre_ids.forEach((id: number) => {
+        this.listGenres.push(genres.find((m: { id: number; }) => m.id === id))
+      });
+      console.log(this.listGenres)
+    }
+  }
+  clearAll(){
+    this.detailMovie = {
+      poster_path: null,
+      adult: false,
+      overview: "",
+      release_date: "",
+      genre_ids: [],
+      id: "",
+      original_title: "",
+      original_language: "",
+      title: "",
+      backdrop_path: null,
+      popularity: 0,
+      vote_count: 0,
+      video: false,
+      vote_average: 0
+    }
+    this.listGenres = [];
+  }
 }

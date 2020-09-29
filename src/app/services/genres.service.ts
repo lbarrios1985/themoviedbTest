@@ -10,7 +10,7 @@ export class GenresService {
   private BASE_URL: string;
   private API_KEY: string;
   private CONFIG = 'genre/';
-  private CONFIG2 = '/list?api_key=='
+  private CONFIG2 = '/list?api_key='
   public LANG = 'en-US';
   public TYPE: string = 'movie';
   constructor(private http: HttpClient) {
