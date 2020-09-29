@@ -1,1 +1,24 @@
-<p>favorites works!</p>
+
+<h1 p-4vw>My favourites</h1>
+<button type="button" class="btn btn-danger" (click)="goHome()">Return</button>
+
+<div class="container">
+  <div class="card-group row">
+    <div class="col-12" *ngFor="let movie of listFavorites">
+    <div class="card">
+      <div class="row">
+        <div class="col-12 col-sm-5 col-md-4">
+          <img class="card-img-top" [src]="movie.backdrop_path" alt="Card image cap">
+        </div>
+        <div class="col-12 col-sm-7 col-md-8">
+          <h3>{{movie.title}}</h3>
+          <div>{{movie.release_date}}</div>
+          <button type="button" class="btn btn-outline-dark"
+            (click)="removeFav(movie)"
+          >Remove from favorites</button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
