@@ -1,15 +1,37 @@
-<div class="detail-movie">
-  <h1>{{detailMovie.title}}</h1>
+<div class="container-fluid detail-movie" [ngStyle]="{'backgroundImage': 'url(' + detailMovie.backdrop_path + ')'}">
+  <!-- <h1>{{detailMovie.title}}</h1> -->
   <div class="row row-detail-movie">
-    <div class="col-12 col-sm-6 col-md-5">
-      <img class="" [src]="detailMovie.poster_path">
-      <div *ngFor="let genre of listGenres">
-        <div class="badge badge-pill badge-light">{{genre.name}}</div>
+
+    <div class="col-12 d-flex flex-column align-self-end">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="col-poster d-none d-sm-block">
+            <img class="" [src]="detailMovie.poster_path">
+            <div class="d-flex justify-content-around flex-wrap">
+              <div *ngFor="let genre of listGenres">
+                <span class="badge badge-pill badge-light">{{genre.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <h1 class="title-movie">{{detailMovie.title}}</h1>
+          detail-movie
+        </div>
+        <div class="col-12 d-flex d-sm-none">
+          <div *ngFor="let genre of listGenres">
+            <span class="badge badge-pill badge-light">{{genre.name}}</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-12 col-sm-6 col-md-7">
-      <p>{{detailMovie.overview}}</p>
-      <button type="button" class="btn btn-danger" (click)="goHome()">Return</button>
+    <div class="col-12 col-text">
+      <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+          <p>{{detailMovie.overview}}</p>
+          <button type="button" class="btn btn-danger" (click)="goHome()">Return</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

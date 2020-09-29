@@ -1,0 +1,51 @@
+.detail-movie {
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  height: calc( 100vh - 54px );
+  // height: 100%;
+  display: flex;
+  * {
+    color: white;
+
+  }
+  .row-detail-movie {
+    .title-movie {
+      font-weight: bold;
+      text-shadow: 0 0 10px black
+    }
+    .badge {
+      color: #3A3A3A;
+    }
+    .col-text {
+      display: flex;
+      background-color: #3A3A3A;
+      height: 18rem;
+      align-self: flex-end;
+      padding: 2rem
+    }
+    .col-poster {
+      max-width: 200px;
+      // margin-left: auto;
+
+      z-index: 1;
+      right: 0;
+      left: 0;
+      position: absolute;
+      bottom: initial;
+      top: 4rem;
+      margin: auto;
+
+      img {
+        width: 100%;
+        max-width: 200px;
+        display: block;
+        margin-left: auto;
+
+      }
+
+    }
+  }
+
+
+}
