@@ -4,14 +4,15 @@
 
 
 body {
-  border: 1px solid red;
+  // border: 1px solid red;
   background-color: #1B1B1B;
   * {
     color: #FF7F84;
   }
+  // Carousel
   .row-owlcar {
     margin: 2rem 0 3rem 0;
-    border: 1px solid red;
+    // border: 1px solid red;
     display: flex;
 
     .btn-owlcar {
@@ -44,11 +45,13 @@ body {
       padding: 0
     }
     .owl-item {
-      border: 1px solid;
+      // border: 1px solid;
       padding:  0 1px;
       img  {
         border-radius: 20px;
       }
     }
   }
+  // End - Carousel
+
 }
