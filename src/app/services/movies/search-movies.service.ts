@@ -24,9 +24,8 @@ export class SearchMoviesService {
   }
 
   searchMovies(q: string): any {
-    this.QUERY = q.replace(/ /g, "%20");
     let url =  this.BASE_URL + this.SEARCH_MOVIES + this.API_KEY +
-    '&language=' + this.LANG + '&page=' + this.PAGE + '&query=' + this.QUERY;
+    '&language=' + this.LANG + '&page=' + this.PAGE + '&query=' + q;
     return this.http.get(url);
   }
 }
