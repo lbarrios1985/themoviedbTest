@@ -41,7 +41,7 @@ export class CarouselMoviesComponent implements OnInit {
         items: 2
       },
       740: {
-        items: 3
+        items: 4
       },
       940: {
         items: 4

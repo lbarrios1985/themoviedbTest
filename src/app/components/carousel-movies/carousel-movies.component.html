@@ -1,16 +1,13 @@
 <h1>Tranding Movies</h1>
-<div class="container container-movies">
+<div class="container-fluid container-movies">
   <div class="row row-owlcar">
-    <!-- Left
-          <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i>
-    -->
-    <div class="col-sm-1 btn-owlcar">
+    <div class="col-1 btn-owlcar">
       <a (click)="owlCar.prev()">
-        minus
+        <i class="fa fa-chevron-left fa-lg"></i>
       </a>
     </div>
     <!-- carousel -->
-    <div class="col-sm-10">
+    <div class="col-10">
       <owl-carousel-o [options]="customOptions" #owlCar>
         <ng-container *ngFor="let movie of trendingMovies">
           <ng-template carouselSlide>
@@ -19,12 +16,9 @@
         </ng-container>
       </owl-carousel-o>
     </div>
-    <!-- Right
-          <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
-    -->
-    <div class="col-sm-1 btn-owlcar">
+    <div class=" col-1 btn-owlcar">
       <a (click)="owlCar.next()">
-      mas
+        <i class="fa fa-chevron-right fa-lg"></i>
       </a>
     </div>
   </div>
