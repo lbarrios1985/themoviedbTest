@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import {Router} from '@angular/router';
 // Services
 import { SearchMoviesService } from '../../services/movies/search-movies.service';
 // Interfaces
@@ -26,7 +27,10 @@ export class SearchMoviesComponent implements OnInit {
 
   @ViewChild('search', { static: false }) search: any;
 
-  constructor(protected ssMovies: SearchMoviesService) {
+  constructor(
+    protected ssMovies: SearchMoviesService,
+    private router: Router
+  ) {
     this.API_BASE_IMAGE = environment.API_BASE_IMAGE;
   }
 
@@ -54,6 +58,7 @@ export class SearchMoviesComponent implements OnInit {
             }
           }
         },
+        // tslint:disable-next-line: no-shadowed-variable
         (error: any) => {
           console.error(error);
         }
@@ -67,5 +72,9 @@ export class SearchMoviesComponent implements OnInit {
     input.addEventListener('search', (event): void => {
       this.listMovies = [];
     });
+  }
+  redirect(item: Movie): void {
+    this.listMovies = [];
+    this.router.navigate(['/detail'], {state: { movie: item}});
   }
 }

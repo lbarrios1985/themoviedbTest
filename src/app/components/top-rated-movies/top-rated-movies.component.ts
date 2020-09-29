@@ -43,7 +43,7 @@ export class TopRatedMoviesComponent implements OnInit {
       }
     );
   }
-  redirect(item:Movie) {
+  redirect(item: Movie): void {
     this.router.navigate(['/detail'],{state:{movie: item}});
   }
 
