@@ -83,12 +83,17 @@ export class DetailsComponent implements OnInit {
     this.listGenres = [];
   }
   addFavorite(): void{
-    // let fav = [];
-    // if (localStorage.getItem('fav')){
-    //   console.log(JSON.parse(localStorage.getItem('fav')))
-    // } else {
-    //   let obj = Object.assign([], this.detailMovie);
-    //   localStorage.setItem('fav', JSON.stringify(obj));
-    // }
+    let fav: Movie[] = [];
+    if (localStorage.getItem('fav')){
+      fav = JSON.parse(localStorage.getItem('fav'));
+      const found = fav.find(m => m.id === this.detailMovie.id);
+      if (found === undefined) {
+        fav.push(this.detailMovie);
+        localStorage.setItem('fav', JSON.stringify(fav));
+      }
+    } else {
+      fav.push(this.detailMovie);
+      localStorage.setItem('fav', JSON.stringify(fav));
+    }
   }
 }
