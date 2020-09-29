@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 // pluggins
 import { OwlOptions } from 'ngx-owl-carousel-o';
 // Service
@@ -51,7 +52,8 @@ export class CarouselMoviesComponent implements OnInit {
 
   constructor(
     protected tsMovies: TrendingMoviesService,
-    protected Config: ConfigService
+    protected Config: ConfigService,
+    private router: Router
     ) {
       this.API_BASE_IMAGE = environment.API_BASE_IMAGE;
     }
@@ -72,6 +74,10 @@ export class CarouselMoviesComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  redirect(item:Movie) {
+    this.router.navigate(['/detail'],{state:{movie: item}});
   }
 
 }
