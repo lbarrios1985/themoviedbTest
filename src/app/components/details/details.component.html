@@ -1,1 +1,12 @@
-<p>details works!</p>
+<div class="detail-movie">
+  <h1>{{detailMovie.title}}</h1>
+  <div class="row row-detail-movie">
+    <div class="col-12 col-sm-6 col-md-5">
+      <img class="" [src]="detailMovie.poster_path">
+    </div>
+    <div class="col-12 col-sm-6 col-md-7">
+      <p>{{detailMovie.overview}}</p>
+    </div>
+  </div>
+</div>
+<!-- <pre>{{detailMovie|json}}</pre> -->
