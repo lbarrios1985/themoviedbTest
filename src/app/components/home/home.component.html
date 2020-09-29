@@ -7,7 +7,9 @@
     <img [src]="posterPath"> -->
 </div>
 
-<button type="button" class="btn btn-danger" (click)="goFav()">Fav</button>
+<button type="button" class="btn btn-favorires" (click)="goFav()">
+  <i class="fa fa-star" aria-hidden="true"></i>
+</button>
 
 <div>
   <app-carousel-movies
