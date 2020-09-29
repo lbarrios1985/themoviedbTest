@@ -1,5 +1,13 @@
 <div>
-  <app-carousel-movies></app-carousel-movies>
+    <h3>{{titleTredingMovie}}</h3>
+    <img [src]="backdropPath">
+    <img [src]="posterPath">
+</div>
+
+<div>
+  <app-carousel-movies
+    (firstTrendingMovie)="getTrendingMovie($event)"
+  ></app-carousel-movies>
 </div>
 
 <div>

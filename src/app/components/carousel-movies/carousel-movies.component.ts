@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Router} from '@angular/router';
 // pluggins
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -21,6 +21,8 @@ export class CarouselMoviesComponent implements OnInit {
   trendingMovies: Movie[] = [];
   API_BASE_IMAGE: string;
   imageSize: string;
+
+  @Output() firstTrendingMovie: EventEmitter<Movie> =   new EventEmitter();
 
   customOptions: OwlOptions = {
     autoplay : true,
@@ -71,6 +73,9 @@ export class CarouselMoviesComponent implements OnInit {
           for (let i = 0; i < 10; i++) {
             data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
             data.results[i].backdrop_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].backdrop_path;
+            if ( i === 0 ) {
+              this.firstTrendingMovie.emit(data.results[0]);
+            }
             this.trendingMovies.push(data.results[i]);
           }
         }

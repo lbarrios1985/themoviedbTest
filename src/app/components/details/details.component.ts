@@ -14,8 +14,8 @@ import { Genre } from '../../interfaces/genre';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  detailMovie:Movie;
-  listGenres: Genre[]=[];
+  detailMovie: Movie;
+  listGenres: Genre[] = [];
 
   constructor(
     private acRoute: ActivatedRoute,
@@ -33,15 +33,15 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.getGenres();
   }
-  goHome() {
+  goHome(): void{
     this.router.navigate(['']);
     localStorage.removeItem('detail');
   }
   // Get Genders movies
-  getGenres(){
+  getGenres(): void{
     this.gsGenre.getGenres()
     .subscribe(
       (data: GetData) => {
@@ -53,33 +53,33 @@ export class DetailsComponent implements OnInit {
     );
   }
   // Find genders
-  findGenres(genres: any[]){
+  findGenres(genres: any[]): void{
     if (localStorage.getItem('detail')){
-      let movie = JSON.parse(localStorage.getItem('detail'));
-      let genre_ids = movie.genre_ids;
+      const movie = JSON.parse(localStorage.getItem('detail'));
+      const genre_ids = movie.genre_ids;
       genre_ids.forEach((id: number) => {
         this.listGenres.push(genres.find((m: { id: number; }) => m.id === id))
       });
-      console.log(this.listGenres)
+      console.log(this.listGenres);
     }
   }
-  clearAll(){
+  clearAll(): void{
     this.detailMovie = {
       poster_path: null,
       adult: false,
-      overview: "",
-      release_date: "",
+      overview: '',
+      release_date: '',
       genre_ids: [],
-      id: "",
-      original_title: "",
-      original_language: "",
-      title: "",
+      id: '',
+      original_title: '',
+      original_language: '',
+      title: '',
       backdrop_path: null,
       popularity: 0,
       vote_count: 0,
       video: false,
       vote_average: 0
-    }
+    };
     this.listGenres = [];
   }
 }
