@@ -31,4 +31,8 @@ export class FavoritesComponent implements OnInit {
   goHome(): void{
     this.router.navigate(['']);
   }
+
+  redirect(item: Movie): void {
+    this.router.navigate(['/detail'], { state: { movie: item}});
+  }
 }
