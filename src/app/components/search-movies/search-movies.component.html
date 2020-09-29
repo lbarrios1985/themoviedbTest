@@ -2,7 +2,7 @@
   <form #sMovie="ngForm" (ngSubmit)="searchMovies(sMovie.value)">
     <div class="form-group row">
       <div class="col-sm-10">
-        <input type="search" id="search" aria-describedby="error_search" placeholder="Search" name="movie"
+        <input type="search" (click)="clearSearch()" id="search" aria-describedby="error_search" placeholder="Search" name="movie"
           class="form-control" [(ngModel)]="searchMovie" #search="ngModel"
         >
       </div>
@@ -12,4 +12,24 @@
     </div>
     <small id="error_search" class="form-text text-muted"></small>
   </form>
+</div>
+
+<div>
+  <div class="card-group row">
+    <div class="col-12 col-sm-6 col-md-4" *ngFor="let movie of listMovies">
+      <div class="card">
+        <img class="card-img-top" [src]="movie.poster_path" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{movie.title}}</h5>
+          <p class="card-text">{{movie.overview}} </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <span>Language: {{movie.original_language}}</span>/
+            <span>Popularity: {{movie.popularity}}</span>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
