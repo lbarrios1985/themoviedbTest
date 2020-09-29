@@ -40,6 +40,9 @@ export class DetailsComponent implements OnInit {
     this.router.navigate(['']);
     localStorage.removeItem('detail');
   }
+  goFav(): void{
+    this.router.navigate(['favorites']);
+  }
   // Get Genders movies
   getGenres(): void{
     this.gsGenre.getGenres()

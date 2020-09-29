@@ -4,6 +4,8 @@
     <img [src]="posterPath">
 </div>
 
+<button type="button" class="btn btn-danger" (click)="goFav()">Fav</button>
+
 <div>
   <app-carousel-movies
     (firstTrendingMovie)="getTrendingMovie($event)"
