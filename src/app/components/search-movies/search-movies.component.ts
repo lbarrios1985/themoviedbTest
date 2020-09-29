@@ -46,9 +46,8 @@ export class SearchMoviesComponent implements OnInit {
         (data: GetData) => {
           this.imageSize = 'w500';
           const count = data.results.length >= 9 ? 9 : data.results.length;
+          this.listMovies = [];
           if (count === 0) {
-            this.listMovies = [];
-            console.log(error);
             error.innerHTML = 'Movie not found, sorry!';
           } else {
             for (let i = 0; i < 9; i++) {
@@ -68,9 +67,11 @@ export class SearchMoviesComponent implements OnInit {
     }
   }
   clearSearch(): void{
+    const error = document.getElementById('error_search');
     const input = document.getElementById('search');
     input.addEventListener('search', (event): void => {
       this.listMovies = [];
+      error.innerHTML = '';
     });
   }
   redirect(item: Movie): void {

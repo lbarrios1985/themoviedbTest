@@ -63,11 +63,16 @@ export class CarouselMoviesComponent implements OnInit {
     this.tsMovies.getTrendingMovies()
     .subscribe(
       (data: GetData) => {
-        this.imageSize = 'w500';
-        for (let i = 0; i < 10; i++) {
-          data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
-          data.results[i].backdrop_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].backdrop_path;
-          this.trendingMovies.push(data.results[i]);
+        const count = data.results.length >= 10 ? 10 : data.results.length;
+        if (count === 0) {
+          this.trendingMovies = [];
+        } else {
+          this.imageSize = 'w500';
+          for (let i = 0; i < 10; i++) {
+            data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
+            data.results[i].backdrop_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].backdrop_path;
+            this.trendingMovies.push(data.results[i]);
+          }
         }
       },
       (error: any) => {
@@ -76,8 +81,8 @@ export class CarouselMoviesComponent implements OnInit {
     );
   }
 
-  redirect(item:Movie) {
-    this.router.navigate(['/detail'],{state:{movie: item}});
+  redirect(item: Movie): void {
+    this.router.navigate(['/detail'], { state: { movie: item}});
   }
 
 }
