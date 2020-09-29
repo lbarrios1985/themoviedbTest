@@ -13,6 +13,7 @@ import { TopRatedMoviesComponent } from './components/top-rated-movies/top-rated
 import { DetailsComponent } from './components/details/details.component';
 import { HomeComponent } from './components/home/home.component';
 import { SearchMoviesComponent } from './components/search-movies/search-movies.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 // Pluggins
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
@@ -24,7 +25,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     TopRatedMoviesComponent,
     DetailsComponent,
     HomeComponent,
-    SearchMoviesComponent
+    SearchMoviesComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
