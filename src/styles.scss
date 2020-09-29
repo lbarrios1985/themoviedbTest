@@ -1,3 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
+body {
+  border: 1px solid red;
+  background-color: #1B1B1B;
+  * {
+    color: #FF7F84;
+  }
+  .row-owlcar {
+    margin: 2rem 0 3rem 0;
+    border: 1px solid red;
+    display: flex;
+
+    .btn-owlcar {
+      padding: 0;
+      a {
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        text-decoration: none;
+        &:hover{
+          background-color: rgba( 0,0,0,0.05)
+        }
+      }
+      i {
+        color: rgba(white, 0.6);
+        transform: scaleY(2);
+        font-weight: bold;
+      }
+    }
+    .col-1 {
+      flex: 0 0 5%;
+      max-width: 5%;
+    }
+    .col-10 {
+      flex: 0 0 90%;
+      max-width: 90%;
+      padding: 0
+    }
+    .owl-item {
+      border: 1px solid;
+      padding:  0 1px;
+      img  {
+        border-radius: 20px;
+      }
+    }
+  }
+}
