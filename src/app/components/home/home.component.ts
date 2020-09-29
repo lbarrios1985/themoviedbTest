@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 // Interfaces
 import { Movie } from '../../interfaces/movie';
 
@@ -12,7 +14,7 @@ export class HomeComponent implements OnInit {
   posterPath: string;
   titleTredingMovie: string;
 
-  constructor() { }
+  constructor(private router: Router,) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +24,7 @@ export class HomeComponent implements OnInit {
     this.backdropPath = item.backdrop_path;
     this.titleTredingMovie = item.title;
   }
-
+  goFav(): void{
+    this.router.navigate(['favorites']);
+  }
 }

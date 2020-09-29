@@ -1,3 +1,4 @@
+
 <div class="container-fluid detail-movie" [ngStyle]="{'backgroundImage': 'url(' + detailMovie.backdrop_path + ')'}">
   <!-- <h1>{{detailMovie.title}}</h1> -->
   <div class="row row-detail-movie">
@@ -31,6 +32,7 @@
           <p>{{detailMovie.overview}}</p>
           <button type="button" class="btn btn-outline-dark" (click)="addFavorite()">Add to Favorites</button>
           <button type="button" class="btn btn-danger" (click)="goHome()">Return</button>
+          <button type="button" class="btn btn-danger" (click)="goFav()">Fav</button>
         </div>
       </div>
     </div>
