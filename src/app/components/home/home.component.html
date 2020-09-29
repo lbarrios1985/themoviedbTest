@@ -1,7 +1,10 @@
-<div>
-    <h3>{{titleTredingMovie}}</h3>
-    <img [src]="backdropPath">
-    <img [src]="posterPath">
+<div class="popular-movie" [ngStyle]="{'backgroundImage': 'url(' + backdropPath + ')'}">
+  <div>
+    <h1>{{titleTredingMovie}}</h1>
+    <p>More popular</p>
+  </div>
+    <!-- <img [src]="backdropPath">
+    <img [src]="posterPath"> -->
 </div>
 
 <div>
