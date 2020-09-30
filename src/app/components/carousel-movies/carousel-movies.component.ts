@@ -71,13 +71,14 @@ export class CarouselMoviesComponent implements OnInit {
         } else {
           this.imageSize = 'w500';
           for (let i = 0; i < 10; i++) {
-            data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
-            data.results[i].backdrop_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].backdrop_path;
+            data.results[i].poster_path = this.imgReturn(data.results[i].poster_path);
+            data.results[i].backdrop_path = this.imgReturn(data.results[i].backdrop_path);
             if ( i === 0 ) {
               this.firstTrendingMovie.emit(data.results[0]);
             }
             this.trendingMovies.push(data.results[i]);
           }
+          console.log(data.results[0].backdrop_path)
         }
       },
       (error: any) => {
@@ -88,6 +89,14 @@ export class CarouselMoviesComponent implements OnInit {
 
   redirect(item: Movie): void {
     this.router.navigate(['/detail'], { state: { movie: item}});
+  }
+
+  imgReturn(img: string): string {
+    if (img !== undefined && img !== null && img !== '') {
+      return this.API_BASE_IMAGE + this.imageSize + img;
+    } else {
+      return '/assets/image/empy.png';
+    }
   }
 
 }

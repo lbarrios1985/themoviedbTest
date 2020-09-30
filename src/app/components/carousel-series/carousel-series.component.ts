@@ -59,8 +59,8 @@ export class CarouselSeriesComponent implements OnInit {
       (data: GetData) => {
         this.imageSize = 'w500';
         for (let i = 0; i < 10; i++) {
-          data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
-          data.results[i].backdrop_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].backdrop_path;
+          data.results[i].poster_path = this.imgReturn(data.results[i].poster_path);
+          data.results[i].backdrop_path = this.imgReturn(data.results[i].backdrop_path);
           this.popularSeries.push(data.results[i]);
         }
       },
@@ -68,6 +68,14 @@ export class CarouselSeriesComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  imgReturn(img: string): string {
+    if (img !== undefined && img !== null && img !== '') {
+      return this.API_BASE_IMAGE + this.imageSize + img;
+    } else {
+      return '/assets/image/empy.jpeg';
+    }
   }
 
 }
