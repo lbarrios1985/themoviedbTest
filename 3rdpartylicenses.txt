@@ -72,6 +72,9 @@ font-awesome
 ngx-owl-carousel-o
 MIT
 
+ngx-spinner
+MIT
+
 rxjs
 Apache-2.0
                                Apache License
