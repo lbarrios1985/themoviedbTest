@@ -39,7 +39,9 @@ export class SearchMoviesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  /**
+   * Function by Search movies
+  */
   searchMovies(f: Search): void{
     const text = f.movie;
     const error = document.getElementById('error_search');
@@ -55,9 +57,11 @@ export class SearchMoviesComponent implements OnInit {
             if (count === 0) {
               error.innerHTML = 'Movie not found, sorry!';
             } else {
-              for (let i = 0; i < 9; i++) {
-                data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
-                data.results[i].backdrop_path = this.imgReturn(data.results[i].backdrop_path);
+              for (let i = 0; i < count; i++) {
+                let poster = data.results[i].poster_path;
+                let backdrop = data.results[i].backdrop_path;
+                data.results[i].poster_path = this.imgReturn(poster, 'poster');
+                data.results[i].backdrop_path = this.imgReturn(backdrop, 'backdrop');
                 this.listMovies.push(data.results[i]);
               }
             }
@@ -66,14 +70,20 @@ export class SearchMoviesComponent implements OnInit {
           // tslint:disable-next-line: no-shadowed-variable
           (error: any) => {
             console.error(error);
+            error.innerHTML = 'Something went wrong';
             this.spinner.hide();
           }
         );
+      } else {
+        error.innerHTML = 'The search field is empty';
       }
     } else{
-      error.innerHTML = '';
+      error.innerHTML = 'You need write something';
     }
   }
+  /**
+   * Function by clear all
+  */
   clearSearch(): void{
     const error = document.getElementById('error_search');
     const input = document.getElementById('search');
@@ -82,11 +92,16 @@ export class SearchMoviesComponent implements OnInit {
       error.innerHTML = '';
     });
   }
+  /**
+   * Function by redirect to home
+  */
   redirect(item: Movie): void {
     this.listMovies = [];
     this.router.navigate(['/detail'], {state: { movie: item}});
   }
-
+  /**
+   * Spinner Function
+  */
   showSpinner(): void {
     this.spinner.show(undefined,
       {
@@ -98,6 +113,9 @@ export class SearchMoviesComponent implements OnInit {
       }
     );
   }
+  /**
+   * Function to test the spinner
+  */
   testSpiner(): void{
     this.showSpinner();
     setTimeout(() => {
@@ -105,11 +123,15 @@ export class SearchMoviesComponent implements OnInit {
     }, 3000);
   }
 
-  imgReturn(img: string): string {
-    if (img !== undefined && img !== null && img !== '') {
+  imgReturn(img: string, typePath: string): string {
+    if (img !== null && img !== undefined) {
       return this.API_BASE_IMAGE + this.imageSize + img;
-    } else {
+    } else if (typePath === 'backdrop'){
       return '/assets/image/empy.png';
+    } else if (typePath === 'poster'){
+      return '/assets/image/poster_empy.png';
+    } else {
+      this.spinner.hide();
     }
   }
 }
