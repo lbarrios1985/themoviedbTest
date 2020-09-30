@@ -12,12 +12,15 @@
       </div>
       -->
     </div>
-    <small id="error_search" class="form-text text-muted"></small>
+    <small id="error_search" class="form-text text-red w-100 text-center"></small>
   </form>
 </div>
 
-<div>
-  <div class="card-group row">
+<div *ngIf="listMovies.length > 0">
+  <div class="card-group row row-search">
+    <div class="col-12">
+      <h1 class="text-center">Search Result</h1>
+    </div>
     <div class="col-12 col-sm-6 col-md-4" *ngFor="let movie of listMovies">
       <div class="card" (click)="redirect(movie)">
         <img class="card-img-top" [src]="movie.poster_path" alt="Card image cap">
