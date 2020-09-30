@@ -93,7 +93,9 @@ body {
       img  {
         border-radius: 20px;
         background-color: #C9C9C9;
-        max-height: 166px;
+        height: 166px;
+        object-fit: cover;
+        object-position: center;
       }
     }
   }
