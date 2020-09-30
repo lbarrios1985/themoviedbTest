@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-sm-9 offset-sm-3">
           <p>{{detailMovie.overview}}</p>
-          <button type="button" class="btn btn-outline-warning mr-3" (click)="addFavorite()">
+          <button type="button" class="btn btn-outline-warning mr-3" (click)="addFavorite()" *ngIf="showBtnFav">
             <i class="fa fa-heart" aria-hidden="true"></i>
             Add to Favorites
           </button>

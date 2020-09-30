@@ -16,6 +16,7 @@ import { Genre } from '../../interfaces/genre';
 export class DetailsComponent implements OnInit {
   detailMovie: Movie;
   listGenres: Genre[] = [];
+  showBtnFav: boolean;
 
   constructor(
     private acRoute: ActivatedRoute,
@@ -24,10 +25,12 @@ export class DetailsComponent implements OnInit {
   ) {
     if (this.router.getCurrentNavigation().extras.state) {
       this.detailMovie = this.router.getCurrentNavigation().extras.state.movie;
-      localStorage.setItem('detail', JSON.stringify(this.detailMovie));
+      this.showButton();
     } else if (localStorage.getItem('detail')){
+      this.showButton();
       this.detailMovie = JSON.parse(localStorage.getItem('detail'));
     } else {
+      this.showBtnFav = false;
       this.goHome();
       this.clearAll();
     }
@@ -93,10 +96,30 @@ export class DetailsComponent implements OnInit {
       if (found === undefined) {
         fav.push(this.detailMovie);
         localStorage.setItem('fav', JSON.stringify(fav));
+        this.showBtnFav = false;
       }
     } else {
       fav.push(this.detailMovie);
       localStorage.setItem('fav', JSON.stringify(fav));
+      this.showBtnFav = false;
+    }
+  }
+  showButton(): void{
+    const found = this.findMovie();
+    this.showBtnFav = found !== 'same' ? true : false;
+  }
+
+  findMovie(): string{
+    if (localStorage.getItem('fav')){
+      const fav = JSON.parse(localStorage.getItem('fav'));
+      const found = fav.find((m: { id: string | number; }) => m.id === this.detailMovie.id);
+      if (found === undefined) {
+        return 'update'
+      } else {
+        return 'same';
+      }
+    } else {
+      return 'create';
     }
   }
 }
