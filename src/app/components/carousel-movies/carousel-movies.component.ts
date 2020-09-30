@@ -78,8 +78,8 @@ export class CarouselMoviesComponent implements OnInit {
             }
             this.trendingMovies.push(data.results[i]);
           }
-          console.log(data.results[0].backdrop_path)
-          console.log(data.results[0].poster_path)
+          // console.log(data.results[0].backdrop_path)
+          // console.log(data.results[0].poster_path)
         }
       },
       (error: any) => {
