@@ -9,6 +9,7 @@ import { Movie } from '../../interfaces/movie';
 import { environment } from '../../../environments/environment';
 // Pluggins
 import { NgxSpinnerService } from "ngx-spinner";
+import { async } from 'rxjs/internal/scheduler/async';
 
 interface Search {
   movie: string;
@@ -42,40 +43,33 @@ export class SearchMoviesComponent implements OnInit {
   searchMovies(f: Search): void{
     const text = f.movie;
     const error = document.getElementById('error_search');
-    console.log('text', text);
-    if (text !== '' && text !== undefined && text !== null) {
-      this.spinner.show(undefined,
-        {
-          type: 'ball-clip-rotate-multiple',
-          size: 'medium',
-          bdColor: 'rgba(255,255,255, 0.3)',
-          color: 'white',
-          fullScreen: true
-        }
-      );
-      this.ssMovies.searchMovies(text)
-      .subscribe(
-        (data: GetData) => {
-          this.imageSize = 'w500';
-          const count = data.results.length >= 9 ? 9 : data.results.length;
-          this.listMovies = [];
-          if (count === 0) {
-            error.innerHTML = 'Movie not found, sorry!';
-          } else {
-            for (let i = 0; i < 9; i++) {
-              data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
-              data.results[i].backdrop_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].backdrop_path;
-              this.listMovies.push(data.results[i]);
+    if (text !== undefined) {
+      if (text.length > 0 ) {
+        this.showSpinner();
+        this.ssMovies.searchMovies(text)
+        .subscribe(
+          (data: GetData) => {
+            this.imageSize = 'w500';
+            const count = data.results.length >= 9 ? 9 : data.results.length;
+            this.listMovies = [];
+            if (count === 0) {
+              error.innerHTML = 'Movie not found, sorry!';
+            } else {
+              for (let i = 0; i < 9; i++) {
+                data.results[i].poster_path = this.API_BASE_IMAGE + this.imageSize + data.results[i].poster_path;
+                data.results[i].backdrop_path = this.imgReturn(data.results[i].backdrop_path);
+                this.listMovies.push(data.results[i]);
+              }
             }
+            this.spinner.hide();
+          },
+          // tslint:disable-next-line: no-shadowed-variable
+          (error: any) => {
+            console.error(error);
+            this.spinner.hide();
           }
-          this.spinner.hide();
-        },
-        // tslint:disable-next-line: no-shadowed-variable
-        (error: any) => {
-          console.error(error);
-          this.spinner.hide();
-        }
-      );
+        );
+      }
     } else{
       error.innerHTML = '';
     }
@@ -93,7 +87,7 @@ export class SearchMoviesComponent implements OnInit {
     this.router.navigate(['/detail'], {state: { movie: item}});
   }
 
-  showSpinner() {
+  showSpinner(): void {
     this.spinner.show(undefined,
       {
         type: 'ball-clip-rotate-multiple',
@@ -103,8 +97,19 @@ export class SearchMoviesComponent implements OnInit {
         fullScreen: true
       }
     );
+  }
+  testSpiner(): void{
+    this.showSpinner();
     setTimeout(() => {
       this.spinner.hide();
-    }, 4000);
+    }, 3000);
+  }
+
+  imgReturn(img: string): string {
+    if (img !== undefined && img !== null && img !== '') {
+      return this.API_BASE_IMAGE + this.imageSize + img;
+    } else {
+      return '/assets/image/empy.png';
+    }
   }
 }
