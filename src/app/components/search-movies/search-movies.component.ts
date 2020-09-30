@@ -7,7 +7,8 @@ import { GetData } from '../../interfaces/get-data';
 import { Movie } from '../../interfaces/movie';
 
 import { environment } from '../../../environments/environment';
-
+// Pluggins
+import { NgxSpinnerService } from "ngx-spinner";
 
 interface Search {
   movie: string;
@@ -29,7 +30,8 @@ export class SearchMoviesComponent implements OnInit {
 
   constructor(
     protected ssMovies: SearchMoviesService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {
     this.API_BASE_IMAGE = environment.API_BASE_IMAGE;
   }
@@ -40,7 +42,17 @@ export class SearchMoviesComponent implements OnInit {
   searchMovies(f: Search): void{
     const text = f.movie;
     const error = document.getElementById('error_search');
-    if (text !== '') {
+    console.log('text', text);
+    if (text !== '' && text !== undefined && text !== null) {
+      this.spinner.show(undefined,
+        {
+          type: 'ball-clip-rotate-multiple',
+          size: 'medium',
+          bdColor: 'rgba(255,255,255, 0.3)',
+          color: 'white',
+          fullScreen: true
+        }
+      );
       this.ssMovies.searchMovies(text)
       .subscribe(
         (data: GetData) => {
@@ -56,10 +68,12 @@ export class SearchMoviesComponent implements OnInit {
               this.listMovies.push(data.results[i]);
             }
           }
+          this.spinner.hide();
         },
         // tslint:disable-next-line: no-shadowed-variable
         (error: any) => {
           console.error(error);
+          this.spinner.hide();
         }
       );
     } else{
@@ -77,5 +91,20 @@ export class SearchMoviesComponent implements OnInit {
   redirect(item: Movie): void {
     this.listMovies = [];
     this.router.navigate(['/detail'], {state: { movie: item}});
+  }
+
+  showSpinner() {
+    this.spinner.show(undefined,
+      {
+        type: 'ball-clip-rotate-multiple',
+        size: 'medium',
+        bdColor: 'rgba(255,255,255, 0.3)',
+        color: 'white',
+        fullScreen: true
+      }
+    );
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 4000);
   }
 }

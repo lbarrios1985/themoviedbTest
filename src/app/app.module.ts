@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,7 @@ import { SearchMoviesComponent } from './components/search-movies/search-movies.
 import { FavoritesComponent } from './components/favorites/favorites.component';
 // Pluggins
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     SearchMoviesComponent,
     FavoritesComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,7 +37,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    CarouselModule
+    CarouselModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
